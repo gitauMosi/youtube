@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return PostCard(videoId: 'ZZ2ioKEQXu8');
+                return PostCard();
               },
               childCount: 20,
             ),

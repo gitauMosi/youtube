@@ -1,5 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:youtube/core/utils/app_strings.dart';
+import 'package:youtube/core/utils/app_styles.dart';
+import 'package:youtube/features/profile/profile_sub_pages/dowloads_screen.dart';
 
 import '../../widgets/history_card.dart';
 
@@ -23,13 +27,96 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 _headerSection(context),
                 _secondRowSection(context),
-                _customrow(context, "History"),
+                _customrow(context, AppStrings.historyStr),
                 _profileScreen(),
-                Text("Profile"),
+                _playlistsRow(context),
+                _customPlayListsRow(),
+                Column(
+                  children: [
+                    _customTile(AppStrings.yourvideosStr,
+                        Icons.ondemand_video_sharp, () {}),
+                    _customTile(
+                        AppStrings.downloadsStr, Icons.download_rounded, () {Get.to(()=>DowloadsScreen());}),
+                    Divider(),
+                    _customTile(AppStrings.yourMoviesStr,
+                        Icons.personal_video_outlined, () {}),
+                    _customTile(AppStrings.getYouTubePremiumStr,
+                        Icons.video_camera_front_outlined, () {}),
+                    Divider(),
+                    _customTile(AppStrings.timeWatchedStr,
+                        Icons.analytics_outlined, () {}),
+                    _customTile(
+                        AppStrings.helpAndFeedbackStr, Icons.help, () {}),
+                    Divider(),
+                  ],
+                )
               ],
             ),
           ),
         ));
+  }
+
+  Widget _customTile(String name, IconData icon, Function() function) {
+    return GestureDetector(
+      onTap: function,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+        child: Row(
+          spacing: 10,
+          children: [
+            Icon(icon),
+            Text(
+              name,
+              style: AppStyles.titleMediumStyle,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Row _customPlayListsRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [HistoryCard(), HistoryCard()],
+    );
+  }
+
+  Padding _playlistsRow(BuildContext context) {
+    var boxDecoration = BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+            width: 1, color: Theme.of(context).colorScheme.onPrimary),
+        color: Theme.of(context).cardColor);
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            AppStrings.playlistStr,
+            style: AppStyles.titleMediumStyleBold,
+          ),
+          Wrap(
+            spacing: 5,
+            children: [
+              Icon(Icons.add),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6.0),
+                decoration: boxDecoration,
+                child: Center(
+                  child: Text(
+                    AppStrings.viewAllStr,
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 
   SizedBox _profileScreen() {
@@ -63,7 +150,7 @@ class ProfileScreen extends StatelessWidget {
               color: Theme.of(context).cardColor),
           child: Center(
             child: Text(
-              "View all",
+              AppStrings.viewAllStr,
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
             ),
           ),
@@ -80,10 +167,10 @@ class ProfileScreen extends StatelessWidget {
           child: Row(
             spacing: 10,
             children: [
-              _customChip(context, "Switch account"),
-              _customChip(context, "Google Account"),
-              _customChip(context, "Turn on Incognito"),
-              _customChip(context, "Share Channel")
+              _customChip(context, AppStrings.switchAccountStr),
+              _customChip(context, AppStrings.googleAccountStr),
+              _customChip(context, AppStrings.turnOnIcongnitoStr),
+              _customChip(context, AppStrings.shareChannelStr)
             ],
           ),
         ));
@@ -107,13 +194,7 @@ class ProfileScreen extends StatelessWidget {
           decoration: BoxDecoration(
               shape: BoxShape.circle, color: Theme.of(context).cardColor),
           child: Center(
-            child: Text(
-              "M",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Theme.of(context).colorScheme.onPrimary),
-            ),
+            child: Text("M", style: AppStyles.headlineMediumStyleBold),
           ),
         ),
         SizedBox(
@@ -124,18 +205,18 @@ class ProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Mosi",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              AppStrings.userStr,
+              style: AppStyles.titleMediumStyle,
             ),
             Row(
               spacing: 5,
               children: [
-                Text("@mosigit"),
+                Text(AppStrings.usernameStr),
                 Icon(
                   Icons.circle,
                   size: 3,
                 ),
-                Text('View channel'),
+                Text(AppStrings.viewChannelStr),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 16,

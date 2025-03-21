@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/core/utils/app_strings.dart';
 
 class PostCard extends StatelessWidget {
-  final String videoId;
-  const PostCard({super.key, required this.videoId});
+  const PostCard({super.key,});
 
   @override
   Widget build(BuildContext context) {
-    // final VideoPlayerController controller = Get.put(VideoPlayerController());
-
-    // Initialize the controller
-    // controller.initialize(videoId);
 
     return Column(
       children: [
@@ -25,14 +21,14 @@ class PostCard extends StatelessWidget {
             CircleAvatar(
               radius: 20,
               backgroundImage: NetworkImage(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpjlcTzHHCoRaFt81wwRwsBwzfYvW_cb9dhA&s"),
+                  AppStrings.userAvatarStr),
             ),
             SizedBox(width: 10.0),
             Flexible(
               child: Column(
                 children: [
                   Text(
-                    "I Opened A 5 Star Restaurant On A London Underground Train",
+                    AppStrings.postTitleStr,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -40,11 +36,11 @@ class PostCard extends StatelessWidget {
                   Row(
                     spacing: 7,
                     children: [
-                      Text("Niko Omilana", style: TextStyle(fontSize: 12)),
+                      Text(AppStrings.postUserName, style: TextStyle(fontSize: 12)),
                       Icon(Icons.circle, size: 3),
-                      Text("7.8M views", style: TextStyle(fontSize: 12)),
+                      Text(AppStrings.viewsCountStr, style: TextStyle(fontSize: 12)),
                       Icon(Icons.circle, size: 3),
-                      Text("5 years ago", style: TextStyle(fontSize: 12)),
+                      Text(AppStrings.postPostedDate, style: TextStyle(fontSize: 12)),
                     ],
                   )
                 ],
@@ -84,14 +80,14 @@ class PostCard extends StatelessWidget {
                 ),
               ),
             ),
-            _buildListTile(Icons.queue_play_next, "Play next in queue"),
-            _buildListTile(Icons.access_time, "Save to Watch later"),
-            _buildListTile(Icons.bookmark_border, "Save to playlist"),
-            _buildListTile(Icons.download, "Download video"),
-            _buildListTile(Icons.share, "Share"),
-            _buildListTile(Icons.remove_circle_outline, "Not interested"),
-            _buildListTile(Icons.block, "Don't recommend channel"),
-            _buildListTile(Icons.flag, "Report"),
+            _buildListTile(Icons.queue_play_next, AppStrings.playNextQueueStr),
+            _buildListTile(Icons.access_time, AppStrings.saveWatchLater),
+            _buildListTile(Icons.bookmark_border, AppStrings.savePlayList),
+            _buildListTile(Icons.download, AppStrings.downloadVideoStr),
+            _buildListTile(Icons.share, AppStrings.shareStr),
+            _buildListTile(Icons.remove_circle_outline, AppStrings.notInterestedStr),
+            _buildListTile(Icons.block, AppStrings.notRecommendChannel),
+            _buildListTile(Icons.flag, AppStrings.reportStr),
           ],
         );
       },
@@ -105,7 +101,7 @@ class PostCard extends StatelessWidget {
         color: Colors.white,
         size: 18,
       ),
-      title: Text(title, style: TextStyle(color: Colors.white)),
+      title: Text(title,),
       onTap: () {}, // Add action here
     );
   }

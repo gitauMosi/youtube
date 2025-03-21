@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:youtube/features/home/notification_screen.dart';
 
 final String lightTubeIcon = "assets/icons/tube_light.png";
 final String darkTubeIcon = "assets/icons/tube_black.png";
@@ -22,7 +23,9 @@ SliverAppBar customAppBar() {
       ),
       IconButton(
         icon: Icon(Icons.notifications_outlined),
-        onPressed: () {},
+        onPressed: () {
+          Get.to(()=> NotificationScreen());
+        },
         color: Get.isDarkMode ? Colors.white : Colors.black,
       ),
       IconButton(
