@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:youtube/core/utils/app_strings.dart';
+import 'package:youtube/features/home/video_player_screen.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({super.key,});
@@ -9,10 +11,15 @@ class PostCard extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
-          height: 175,
-          width: MediaQuery.of(context).size.width,
-          color: Theme.of(context).cardColor,
+        GestureDetector(
+          onTap: (){
+            Get.to(()=>VideoPlayerScreen());
+          },
+          child: Container(
+            height: 175,
+            width: MediaQuery.of(context).size.width,
+            color: Theme.of(context).cardColor,
+          ),
         ),
         SizedBox(height: 8),
         Row(
